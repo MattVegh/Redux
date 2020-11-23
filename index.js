@@ -42,16 +42,30 @@ function decrement() {
     }
 }
 
+// function reducer(state = {count: 0}, action) {
+//     // return new state based on the incoming action.type
+//     if (action.type === "INCREMENT") {
+//         return {
+//             count: state.count + 1
+//         }
+//     } // add an else if() to this reducer to handle the decrement action
+//         else if(action.type === "DECREMENT") {
+//             return {
+//                 count: state.count - 1
+//             }
+//         }
+// }
+
 function reducer(state = {count: 0}, action) {
     // return new state based on the incoming action.type
-    if (action.type === "INCREMENT") {
-        return {
-            count: state.count + 1
-        }
-    } // add an else if() to this reducer to handle the decrement action
-        else if(action.type === "DECREMENT") {
+    switch(action.type) {
+        case "INCREMENT":
+            return {
+                count: state.count + 1
+            }
+        case "DECREMENT":
             return {
                 count: state.count - 1
             }
-        }
+    }
 }
