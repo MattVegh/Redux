@@ -42,19 +42,25 @@ function decrement() {
     }
 }
 
-// function reducer(state = {count: 0}, action) {
-//     // return new state based on the incoming action.type
-//     if (action.type === "INCREMENT") {
-//         return {
-//             count: state.count + 1
-//         }
-//     } // add an else if() to this reducer to handle the decrement action
-//         else if(action.type === "DECREMENT") {
-//             return {
-//                 count: state.count - 1
-//             }
-//         }
-// }
+/**
+ * Challenge:
+ * 
+ * Enable the ability to double and halve the count. 
+ * If halving, round down instead of letting your count
+ * become a decimal.
+ */
+
+function double() {
+     return {
+         type: "DOUBLE"
+     }
+ }
+
+function halve() {
+    return {
+        type: "HALVE"
+    }
+}
 
 function reducer(state = {count: 0}, action) {
     // return new state based on the incoming action.type
@@ -66,6 +72,15 @@ function reducer(state = {count: 0}, action) {
         case "DECREMENT":
             return {
                 count: state.count - 1
+            }
+        case "DOUBLE":
+            return {
+                count: state.count * 2
+            }
+        case "HALVE":
+            return {
+                count: Math.round(state.count / 2)
+                //count: Math.floor(state.count / 2)
             }
     }
 }
