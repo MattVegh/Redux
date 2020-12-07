@@ -86,3 +86,4 @@ function reducer(state = {count: 0}, action) {
 }
 
 const store = redux.createStore(reducer)
+console.log(store)
