@@ -28,20 +28,29 @@ const redux = require("redux")
 // store.dispatch({type: "INCREMENT"})
 // store.dispatch({type: "DECREMENT"})
 
-function increment(amount) {
+// function increment(amount) {
+//     return {
+//         type: "INCREMENT",
+//         payload: amount
+//     }
+// }
+
+// // Create another action creator to handle decrementing the number
+
+// function decrement() {
+//     return {
+//         type: "DECREMENT"
+//     }
+// }
+
+function changeCount(amount) {
     return {
-        type: "INCREMENT",
+        type: "CHANGE_COUNT",
         payload: amount
     }
 }
 
-// Create another action creator to handle decrementing the number
 
-function decrement() {
-    return {
-        type: "DECREMENT"
-    }
-}
 
 /**
  * Challenge:
@@ -66,14 +75,11 @@ function halve() {
 function reducer(state = {count: 0}, action) {
     // return new state based on the incoming action.type
     switch(action.type) {
-        case "INCREMENT":
+        case "CHANGE_COUNT":
             return {
                 count: state.count + action.payload
             }
-        case "DECREMENT":
-            return {
-                count: state.count - 1
-            }
+
         case "DOUBLE":
             return {
                 count: state.count * 2
@@ -91,4 +97,4 @@ store.subscribe(() => {
     console.log(store.getState())
 })
 
-store.dispatch(increment(3))
+store.dispatch(changeCount(3))
