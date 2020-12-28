@@ -1,7 +1,9 @@
 const redux = require("redux")
-// const initialState = {
-//     count: 0
-// }
+
+const initialState = {
+    count: 0,
+    favoriteThings: []
+}
 
 // function reducer(state=initialState, action) {
 //     switch(action.type) {
@@ -50,16 +52,6 @@ function changeCount(amount) {
     }
 }
 
-
-
-/**
- * Challenge:
- * 
- * Enable the ability to double and halve the count. 
- * If halving, round down instead of letting your count
- * become a decimal.
- */
-
 function double() {
      return {
          type: "DOUBLE"
@@ -72,11 +64,18 @@ function halve() {
     }
 }
 
-function reducer(state = {count: 0}, action) {
+function addFavoriteThing(thing) {
+    return {
+        type: "ADD_FAVORITE_THING",
+        payloud: thing
+    }
+}
+function reducer(state = initialState, action) {
     // return new state based on the incoming action.type
     switch(action.type) {
         case "CHANGE_COUNT":
             return {
+                ...state,
                 count: state.count + action.payload
             }
 
@@ -88,6 +87,12 @@ function reducer(state = {count: 0}, action) {
             return {
                 count: Math.round(state.count / 2)
                 //count: Math.floor(state.count / 2)
+            }
+
+        case "ADD_FAVORITE_THING":
+            return {
+                ...state,
+                favoriteThings: [...state.favoriteThings, action.payload]
             }
     }
 }
